@@ -1,43 +1,12 @@
-﻿### CaWebApi
+﻿using System.Text;
+using Cola.ColaWebApi.MailModels;
 
-#### 1. 配置说明
+namespace Cola.ColaWebApi;
 
-```json
+public interface IWebApi
 {
-  "ColaWebApi": [
-    {
-      "ClientName": "Cola",
-      "BaseUri": "https://tenapi.cn",
-      "TimeOut": 5000,
-      "Cert": {
-        "CertFilePath": "",
-        "CertFilePwd": ""
-      },
-      /* 默认压缩方式  None,GZip,Deflate,Brotli,All */
-      "Decompression": "All"
-    }
-  ]
-}
-```
+    WebApi GetClient(string clientName);
 
-#### 2. 注入说明
-
-```csharp
-builder.Services.AddSingletonColaWebApi(config);
-var webApi = builder.Services.BuildServiceProvider().GetService<IWebApi>();
-var colaClient = webApi!.GetClient("Cola");
-var getWebApiResult = colaClient.GetWebApiAsync<Result>(
-    "https://tenapi.cn/v2/getip",
-    new Dictionary<string, string>
-    {
-        { "author", "odinsam" }
-    }).GetAwaiter().GetResult();
-Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatString());
-```
-
-#### 3. 接口说明
-
-```csharp
     #region Get method
 
     /// <summary>
@@ -50,7 +19,7 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
     /// <returns>result </returns>
     T? GetWebApi<T>(string requestUri, Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
-    
+
     /// <summary>
     /// </summary>
     /// <param name="requestUri"></param>
@@ -61,7 +30,7 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
     Task<T?> GetWebApiAsync<T>(string requestUri, Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
-        #endregion
+    #endregion
 
     #region post method
 
@@ -107,7 +76,7 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
     public T? PutWebApi<T>(string postUri, HttpContent? httpContent,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
-    
+
     /// <summary>
     /// PutWebApiAsync
     /// </summary>
@@ -151,8 +120,8 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
-    #endregion   
-    
+    #endregion
+
     #region OPTIONS
 
     /// <summary>
@@ -194,7 +163,7 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
     /// <param name="filePaths">附件filePaths</param>
     void SendEmail(SmtpClientModel smtpClientModel, MailUser fromUser, List<MailUser> toUsers, string subject,
         string body, List<MailUser>? ccUsers, List<MailUser>? bccUsers, List<string>? filePaths);
-    
+
     #region GenerateHttpContent
 
     /// <summary>
@@ -220,4 +189,4 @@ Console.WriteLine(JsonConvert.SerializeObject(getWebApiResult).ToJsonFormatStrin
     HttpContent GenerateMultipartFormDataContent(IDictionary<string, object> data);
 
     #endregion
-```
+}

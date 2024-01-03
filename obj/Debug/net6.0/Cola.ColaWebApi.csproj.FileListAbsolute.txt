@@ -1,0 +1,15 @@
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/bin/Debug/net6.0/Cola.ColaWebApi.deps.json
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/bin/Debug/net6.0/Cola.ColaWebApi.dll
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/bin/Debug/net6.0/Cola.ColaWebApi.pdb
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/bin/Debug/net6.0/Cola.Core.dll
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/bin/Debug/net6.0/Cola.Core.pdb
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.csproj.AssemblyReference.cache
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.GeneratedMSBuildEditorConfig.editorconfig
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.AssemblyInfoInputs.cache
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.AssemblyInfo.cs
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.csproj.CoreCompileInputs.cache
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.csproj.CopyComplete
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.dll
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/refint/Cola.ColaWebApi.dll
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/Cola.ColaWebApi.pdb
+/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/Debug/net6.0/ref/Cola.ColaWebApi.dll
