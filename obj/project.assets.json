@@ -3746,33 +3746,34 @@
     ]
   },
   "packageFolders": {
-    "/Users/dinya/.nuget/packages/": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
+      "projectUniqueName": "E:\\github\\Cola\\ColaFramework\\Cola.ColaWebApi\\Cola.ColaWebApi.csproj",
       "projectName": "Cola.ColaWebApi",
-      "projectPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
-      "packagesPath": "/Users/dinya/.nuget/packages/",
-      "outputPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/",
+      "projectPath": "E:\\github\\Cola\\ColaFramework\\Cola.ColaWebApi\\Cola.ColaWebApi.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "E:\\github\\Cola\\ColaFramework\\Cola.ColaWebApi\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/dinya/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/dinya/github/OdinCola/Cola.Solution/Cola.Core/Cola.Core.csproj": {
-              "projectPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.Core/Cola.Core.csproj"
+            "E:\\github\\Cola\\ColaFramework\\Cola.Core\\Cola.Core.csproj": {
+              "projectPath": "E:\\github\\Cola\\ColaFramework\\Cola.Core\\Cola.Core.csproj"
             }
           }
         }
@@ -3815,7 +3816,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.307/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
