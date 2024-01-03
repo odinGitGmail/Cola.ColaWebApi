@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "g9pKZcC9ZfRQg8W4quy+2hG75AzKAoqC42ToKVs8EotHgecFpVfIm2RHFj+RwYQoG3ZoKVOgNpXdmITmI4dB9A==",
+  "dgSpecHash": "0driJ5LgzRPZ+4atKbuh2fHkDKic0OP8pq3RPgPQqIfkdMgKUlJkG0Hz0AspEf/UEGxT5zoDsuCgt2oiWY/h7Q==",
   "success": true,
-  "projectFilePath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
+  "projectFilePath": "/Users/dinya/odinGitGmail/ColaFramework/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
   "expectedPackageFiles": [
     "/Users/dinya/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
     "/Users/dinya/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",

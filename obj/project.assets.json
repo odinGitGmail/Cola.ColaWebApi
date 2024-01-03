@@ -3751,11 +3751,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
+      "projectUniqueName": "/Users/dinya/odinGitGmail/ColaFramework/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
       "projectName": "Cola.ColaWebApi",
-      "projectPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
+      "projectPath": "/Users/dinya/odinGitGmail/ColaFramework/Cola.ColaWebApi/Cola.ColaWebApi.csproj",
       "packagesPath": "/Users/dinya/.nuget/packages/",
-      "outputPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.ColaWebApi/obj/",
+      "outputPath": "/Users/dinya/odinGitGmail/ColaFramework/Cola.ColaWebApi/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/dinya/.nuget/NuGet/NuGet.Config"
@@ -3771,8 +3771,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "/Users/dinya/github/OdinCola/Cola.Solution/Cola.Core/Cola.Core.csproj": {
-              "projectPath": "/Users/dinya/github/OdinCola/Cola.Solution/Cola.Core/Cola.Core.csproj"
+            "/Users/dinya/odinGitGmail/ColaFramework/Cola.Core/Cola.Core.csproj": {
+              "projectPath": "/Users/dinya/odinGitGmail/ColaFramework/Cola.Core/Cola.Core.csproj"
             }
           }
         }
