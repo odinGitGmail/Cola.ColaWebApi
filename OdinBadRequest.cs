@@ -1,4 +1,4 @@
-﻿using Cola.Core.Utils.Extensions;
+﻿using Cola.CoreUtils.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Cola.ColaWebApi;

@@ -4,7 +4,7 @@ using Cola.Core.ColaConsole;
 using Cola.Core.ColaException;
 using Cola.Core.Models.ColaWebApi;
 using Cola.Core.Utils.Constants;
-using Cola.Core.Utils.Extensions;
+using Cola.CoreUtils.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

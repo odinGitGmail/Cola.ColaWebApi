@@ -5,7 +5,7 @@ using Cola.ColaWebApi.MailModels;
 using Cola.Core.ColaException;
 using Cola.Core.Models.ColaWebApi;
 using Cola.Core.Utils.Constants;
-using Cola.Core.Utils.Extensions;
+using Cola.CoreUtils.Extensions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
