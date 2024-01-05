@@ -1,4 +1,6 @@
-﻿### CaWebApi
+﻿### ColaWebApi
+
+[![Version](https://flat.badgen.net/nuget/v/Cola.ColaWebApi?label=version)](https://github.com/odinGitGmail/Cola.ColaWebApi) [![download](https://flat.badgen.net/nuget/dt/Cola.ColaWebApi)](https://www.nuget.org/packages/Cola.ColaWebApi) [![commit](https://flat.badgen.net/github/last-commit/odinGitGmail/Cola.ColaWebApi)](https://flat.badgen.net/github/last-commit/odinGitGmail/Cola.ColaWebApi) [![Blog](https://flat.badgen.net/static/blog/odinsam.com)](https://odinsam.com)
 
 #### 1. 配置说明
 
