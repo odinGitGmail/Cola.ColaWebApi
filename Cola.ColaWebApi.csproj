@@ -38,7 +38,4 @@
     <ItemGroup>
         <None Include="readme.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
-    <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-      <Exec Command="dotnet restore" />
-    </Target>
 </Project>
