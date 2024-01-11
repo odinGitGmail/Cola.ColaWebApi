@@ -21,7 +21,7 @@ public static class HttpClientInject
     /// <returns>IServiceCollection</returns>
     public static IServiceCollection AddColaHttpClient(this IServiceCollection services, IConfiguration config)
     {
-        var clientConfigs = config.GetSection(SystemConstant.CONSTANT_COLAWEBAPI_SECTION).Get<List<ClientConfig>>();
+        var clientConfigs = config.GetColaSection<List<ClientConfig>>(SystemConstant.CONSTANT_COLAWEBAPI_SECTION);
         return InjectColaHttpClient(services, config, clientConfigs);
     }
 
@@ -45,7 +45,7 @@ public static class HttpClientInject
     {
         var exceptionHelper = services.BuildServiceProvider().GetService<IColaException>();
         var defaultSettings =
-            config.GetSection(SystemConstant.CONSTANT_COLAWEBAPI_DEFAULTSETTINGS_SECTION).Get<ColaWebApiSettings>()
+            config.GetColaSection<ColaWebApiSettings>(SystemConstant.CONSTANT_COLAWEBAPI_DEFAULTSETTINGS_SECTION)
             ??
             new ColaWebApiSettings();
         ValidateConfig(services, defaultSettings, clientConfigs);

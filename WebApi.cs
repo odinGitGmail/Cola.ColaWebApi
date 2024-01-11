@@ -34,7 +34,7 @@ public class WebApi : IWebApi
         var ex = ExceptionHelper.ThrowStringIsNullOrEmpty(clientName, "HttpClient 配置 ClientName");
         if (ex == null)
         {
-            if (Config.GetSection(SystemConstant.CONSTANT_COLAWEBAPI_SECTION).Get<List<ClientConfig>>()
+            if (Config.GetColaSection<List<ClientConfig>>(SystemConstant.CONSTANT_COLAWEBAPI_SECTION)
                 .Any(c => c.ClientName.StringCompareIgnoreCase(clientName)))
             {
                 Client = HttpClientFactory.CreateClient(clientName);
