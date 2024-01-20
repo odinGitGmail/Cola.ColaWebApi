@@ -1,10 +1,12 @@
 ﻿using System.Net;
+using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Text;
 using Cola.ColaWebApi.MailModels;
 using Cola.Core.ColaException;
 using Cola.Core.Models.ColaWebApi;
-using Cola.Core.Utils.Constants;
+using Cola.CoreUtils.Constants;
+using Cola.CoreUtils.Enums;
 using Cola.CoreUtils.Extensions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
@@ -90,15 +92,19 @@ public class WebApi : IWebApi
     /// </summary>
     /// <param name="postUri">postUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    public T? PostWebApi<T>(string postUri, HttpContent? httpContent,
+    public T? PostWebApi<T>(string postUri, 
+        HttpContent httpContent,
+        EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
         AddCustomHeaders(Client, customHeaders);
+        httpContent.Headers.ContentType = new MediaTypeHeaderValue(mediaType.GetDescription());
         var postResult = Client!.PostAsync(postUri, httpContent, cancellationToken).GetAwaiter().GetResult();
         return GetWebApiResultAsync<T>(postResult).GetAwaiter().GetResult();
     }
@@ -108,15 +114,19 @@ public class WebApi : IWebApi
     /// </summary>
     /// <param name="postUri">postUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    public async Task<T?> PostWebApiAsync<T>(string postUri, HttpContent? httpContent,
+    public async Task<T?> PostWebApiAsync<T>(string postUri, 
+        HttpContent httpContent,
+        EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
         AddCustomHeaders(Client, customHeaders);
+        httpContent.Headers.ContentType = new MediaTypeHeaderValue(mediaType.GetDescription());
         return await GetWebApiResultAsync<T>(await Client!.PostAsync(postUri, httpContent, cancellationToken));
     }
 
@@ -129,14 +139,16 @@ public class WebApi : IWebApi
     /// </summary>
     /// <param name="putUri">putUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Put result</returns>
-    public T? PutWebApi<T>(string putUri, HttpContent? httpContent,
+    public T? PutWebApi<T>(string putUri, HttpContent httpContent, EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
+        httpContent.Headers.ContentType = new MediaTypeHeaderValue(mediaType.GetDescription());
         AddCustomHeaders(Client, customHeaders);
         var putResult = Client!.PutAsync(putUri, httpContent, cancellationToken).GetAwaiter().GetResult();
         return GetWebApiResultAsync<T>(putResult).GetAwaiter().GetResult();
@@ -147,14 +159,17 @@ public class WebApi : IWebApi
     /// </summary>
     /// <param name="putUri">putUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Put result</returns>
-    public async Task<T?> PutWebApiAsync<T>(string putUri, HttpContent? httpContent,
+    public async Task<T?> PutWebApiAsync<T>(string putUri, HttpContent httpContent,
+        EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
+        httpContent.Headers.ContentType = new MediaTypeHeaderValue(mediaType.GetDescription());
         AddCustomHeaders(Client, customHeaders);
         return await GetWebApiResultAsync<T>(await Client!.PutAsync(putUri, httpContent, cancellationToken));
     }
@@ -167,12 +182,11 @@ public class WebApi : IWebApi
     /// DeleteWebApi
     /// </summary>
     /// <param name="deleteUri">deleteUri</param>
-    /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Delete result</returns>
-    public T? DeleteWebApi<T>(string deleteUri, HttpContent? httpContent,
+    public T? DeleteWebApi<T>(string deleteUri,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
@@ -185,12 +199,11 @@ public class WebApi : IWebApi
     /// DeleteWebApiAsync
     /// </summary>
     /// <param name="deleteUri">deleteUri</param>
-    /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Delete result</returns>
-    public async Task<T?> DeleteWebApiAsync<T>(string deleteUri, HttpContent? httpContent,
+    public async Task<T?> DeleteWebApiAsync<T>(string deleteUri,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class
     {
@@ -395,9 +408,7 @@ public class WebApi : IWebApi
             return responseContent;
         }
 
-        var errorModel = GetErrorModel(response).GetAwaiter().GetResult();
-        throw ExceptionHelper.ThrowException(
-            $"Web Request Error. ErrorCode: {errorModel!.ErrorCode}, ErrorMessage:{errorModel!.ErrorMessage}");
+        throw ExceptionHelper.ThrowException(JsonConvert.SerializeObject(response));
     }
 
     private async Task<Stream?>? GetSteamAsync(HttpResponseMessage? response,
@@ -406,13 +417,10 @@ public class WebApi : IWebApi
         if (response!.IsSuccessStatusCode)
         {
             var responseContent = await response.Content.ReadAsStreamAsync(cancellationToken);
-            if (responseContent == null) return null;
             return responseContent;
         }
 
-        var errorModel = GetErrorModel(response).GetAwaiter().GetResult();
-        throw ExceptionHelper.ThrowException(
-            $"Web Request Error. ErrorCode: {errorModel!.ErrorCode}, ErrorMessage:{errorModel!.ErrorMessage}");
+        throw ExceptionHelper.ThrowException(JsonConvert.SerializeObject(response));
     }
 
 
@@ -422,13 +430,10 @@ public class WebApi : IWebApi
         if (response!.IsSuccessStatusCode)
         {
             var responseContent = await response.Content.ReadAsByteArrayAsync(cancellationToken);
-            if (responseContent == null) return null;
             return responseContent;
         }
 
-        var errorModel = GetErrorModel(response).GetAwaiter().GetResult();
-        throw ExceptionHelper.ThrowException(
-            $"Web Request Error. ErrorCode: {errorModel!.ErrorCode}, ErrorMessage:{errorModel!.ErrorMessage}");
+        throw ExceptionHelper.ThrowException(JsonConvert.SerializeObject(response));
     }
 
     private async Task<List<byte>?>? GetByteListAsync(HttpResponseMessage? response,
@@ -437,13 +442,10 @@ public class WebApi : IWebApi
         if (response!.IsSuccessStatusCode)
         {
             var responseContent = await response.Content.ReadAsByteArrayAsync(cancellationToken);
-            if (responseContent == null) return null;
             return responseContent.ToList();
         }
 
-        var errorModel = GetErrorModel(response).GetAwaiter().GetResult();
-        throw ExceptionHelper.ThrowException(
-            $"Web Request Error. ErrorCode: {errorModel!.ErrorCode}, ErrorMessage:{errorModel!.ErrorMessage}");
+        throw ExceptionHelper.ThrowException(JsonConvert.SerializeObject(response));
     }
 
     private async Task<T?> GetModelAsync<T>(HttpResponseMessage? response,
@@ -452,13 +454,10 @@ public class WebApi : IWebApi
         if (response!.IsSuccessStatusCode)
         {
             var responseContent = await response.Content.ReadAsStringAsync(cancellationToken);
-            if (responseContent.StringIsNullOrEmpty()) return default;
-            return JsonConvert.DeserializeObject<T>(responseContent)!;
+            return responseContent.StringIsNullOrEmpty() ? default : JsonConvert.DeserializeObject<T>(responseContent)!;
         }
 
-        var errorModel = GetErrorModel(response).GetAwaiter().GetResult();
-        throw ExceptionHelper.ThrowException(
-            $"Web Request Error. ErrorCode: {errorModel!.ErrorCode}, ErrorMessage:{errorModel!.ErrorMessage}");
+        throw ExceptionHelper.ThrowException(JsonConvert.SerializeObject(response));
     }
 
 

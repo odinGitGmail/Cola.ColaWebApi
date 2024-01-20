@@ -25,7 +25,7 @@
 #### 2. 注入说明
 
 ```csharp
-builder.Services.AddSingletonColaWebApi(config);
+builder.Services.AddColaHttpClient(config);
 var webApi = builder.Services.BuildServiceProvider().GetService<IWebApi>();
 var colaClient = webApi!.GetClient("Cola");
 var getWebApiResult = colaClient.GetWebApiAsync<Result>(

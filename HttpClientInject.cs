@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using Cola.Core.ColaConsole;
 using Cola.Core.ColaException;
 using Cola.Core.Models.ColaWebApi;
-using Cola.Core.Utils.Constants;
+using Cola.CoreUtils.Constants;
 using Cola.CoreUtils.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -69,8 +69,9 @@ public static class HttpClientInject
                 SetRequestHeaders(handler, clientConfig, defaultSettings);
                 return handler;
             });
+            services.AddSingleton<IWebApi, WebApi>();
             ConsoleHelper.WriteInfo(
-                $"注入类型【 HttpClient 】\tname: {clientConfig.ClientName}\t{(clientConfig.BaseUri.StringIsNullOrEmpty() ? "" : $"baseUri:{clientConfig.BaseUri}")}");
+                $"注入类型【 IWebApi 】\tname: {clientConfig.ClientName}\t{(clientConfig.BaseUri.StringIsNullOrEmpty() ? "" : $"baseUri:{clientConfig.BaseUri}")}");
         }
 
         return services;

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Cola.ColaWebApi.MailModels;
+using Cola.CoreUtils.Enums;
 
 namespace Cola.ColaWebApi;
 
@@ -39,11 +40,12 @@ public interface IWebApi
     /// </summary>
     /// <param name="postUri">postUri</param>
     /// <param name="httpContent">httpContent</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    T? PostWebApi<T>(string postUri, HttpContent? httpContent,
+    T? PostWebApi<T>(string postUri, HttpContent httpContent, EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
@@ -52,11 +54,12 @@ public interface IWebApi
     /// </summary>
     /// <param name="postUri">postUri</param>
     /// <param name="httpContent">httpContent</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    Task<T?> PostWebApiAsync<T>(string postUri, HttpContent? httpContent,
+    Task<T?> PostWebApiAsync<T>(string postUri, HttpContent httpContent, EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
@@ -69,11 +72,12 @@ public interface IWebApi
     /// </summary>
     /// <param name="postUri">putUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    public T? PutWebApi<T>(string postUri, HttpContent? httpContent,
+    public T? PutWebApi<T>(string postUri, HttpContent httpContent, EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
@@ -82,11 +86,12 @@ public interface IWebApi
     /// </summary>
     /// <param name="postUri">putUri</param>
     /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
+    /// <param name="mediaType">mediaType</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>post result</returns>
-    Task<T?> PutWebApiAsync<T>(string postUri, HttpContent? httpContent,
+    Task<T?> PutWebApiAsync<T>(string postUri, HttpContent httpContent, EnumMediaType mediaType = EnumMediaType.Json,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
@@ -98,12 +103,11 @@ public interface IWebApi
     /// DeleteWebApi
     /// </summary>
     /// <param name="deleteUri">deleteUri</param>
-    /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Delete result</returns>
-    T? DeleteWebApi<T>(string deleteUri, HttpContent? httpContent,
+    T? DeleteWebApi<T>(string deleteUri,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
@@ -111,12 +115,11 @@ public interface IWebApi
     /// DeleteWebApiAsync
     /// </summary>
     /// <param name="deleteUri">deleteUri</param>
-    /// <param name="httpContent">httpContent       can use GenerateStringContent method</param>
     /// <param name="customHeaders">customHeaders</param>
     /// <param name="cancellationToken">cancellationToken</param>
     /// <typeparam name="T">post result type</typeparam>
     /// <returns>Delete result</returns>
-    Task<T?> DeleteWebApiAsync<T>(string deleteUri, HttpContent? httpContent,
+    Task<T?> DeleteWebApiAsync<T>(string deleteUri,
         Dictionary<string, string>? customHeaders = null,
         CancellationToken cancellationToken = default) where T : class;
 
