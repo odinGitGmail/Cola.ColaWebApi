@@ -61,7 +61,7 @@ public static class HttpClientInject
             }).ConfigurePrimaryHttpMessageHandler(() =>
             {
                 var handler = new HttpClientHandler();
-                if (exceptionHelper.ThrowIfNull(clientConfig.Cert) == null &&
+                if (exceptionHelper.ThrowIfNull(clientConfig.Cert,"证书不能为空") == null &&
                     !clientConfig.Cert!.CertFilePath.StringIsNullOrEmpty())
                     handler.ClientCertificates.Add(new X509Certificate2(
                         Path.Combine(env!.ContentRootPath, clientConfig.Cert!.CertFilePath),
