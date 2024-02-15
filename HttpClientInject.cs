@@ -4,6 +4,7 @@ using Cola.Core.ColaConsole;
 using Cola.Core.ColaException;
 using Cola.Core.Models.ColaWebApi;
 using Cola.CoreUtils.Constants;
+using Cola.CoreUtils.Enums;
 using Cola.CoreUtils.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -52,7 +53,7 @@ public static class HttpClientInject
         var env = services.BuildServiceProvider().GetService<IWebHostEnvironment>();
         foreach (var clientConfig in clientConfigs)
         {
-            exceptionHelper!.ThrowStringIsNullOrEmpty(clientConfig.ClientName, "ClientName");
+            exceptionHelper!.ThrowStringIsNullOrEmpty(clientConfig.ClientName, EnumException.ParamNotNull);
             services.AddHttpClient(clientConfig.ClientName, c =>
             {
                 c.Timeout = TimeSpan.FromMilliseconds(clientConfig.TimeOut);
@@ -61,7 +62,7 @@ public static class HttpClientInject
             }).ConfigurePrimaryHttpMessageHandler(() =>
             {
                 var handler = new HttpClientHandler();
-                if (exceptionHelper.ThrowIfNull(clientConfig.Cert,"证书不能为空") == null &&
+                if (exceptionHelper.ThrowIfNull(clientConfig.Cert,EnumException.CertNotNull) == null &&
                     !clientConfig.Cert!.CertFilePath.StringIsNullOrEmpty())
                     handler.ClientCertificates.Add(new X509Certificate2(
                         Path.Combine(env!.ContentRootPath, clientConfig.Cert!.CertFilePath),
@@ -85,14 +86,12 @@ public static class HttpClientInject
         #region 自定义配置文件检查
 
         if (clientConfigs.Any(c => c.ClientName.StringCompareIgnoreCase(defaultSettings.ForbiddenClientName)))
-            exceptionHelper!.ThrowException(
-                $"HttpClient 自定义配置文件 ClientName 不能命名为 {defaultSettings.ForbiddenClientName}");
+            exceptionHelper!.ThrowException(EnumException.HttpClientClientNameIsDefault);
         if (clientConfigs.Any(c =>
                 !c.Decompression.StringIsNullOrEmpty() && !SystemConstant.CONSTANT_COLAWEBAPI_DECOMPRESSION_SECTION
                     .Split(',')
                     .Contains(c.Decompression)))
-            exceptionHelper!.ThrowException(
-                "HttpClient 自定义配置文件 Decompression 只可以配置为 None,GZip,Deflate,Brotli,All 其中的一项");
+            exceptionHelper!.ThrowException(EnumException.HttpClientDecompressionFailed);
 
         #endregion
 
@@ -101,11 +100,10 @@ public static class HttpClientInject
 
         if (!defaultSettings.ForbiddenClientName.StringCompareIgnoreCase(SystemConstant
                 .CONSTANT_COLAWEBAPI_FORBIDDENCLIENTNAME_SECTION))
-            exceptionHelper!.ThrowException(
-                $"HttpClient默认配置文件 ClientName 只可以命名为 {SystemConstant.CONSTANT_COLAWEBAPI_FORBIDDENCLIENTNAME_SECTION}");
+            exceptionHelper!.ThrowException(EnumException.HttpClientClientNameIsNotDefault);
         if (!SystemConstant.CONSTANT_COLAWEBAPI_DECOMPRESSION_SECTION.Split(',')
                 .Contains(defaultSettings.Decompression))
-            exceptionHelper!.ThrowException("HttpClient默认配置文件 Decompression 只可以配置为 None,GZip,Deflate,Brotli,All 其中的一项");
+            exceptionHelper!.ThrowException(EnumException.HttpClientDecompressionFailed);
 
         #endregion
     }

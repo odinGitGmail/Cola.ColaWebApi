@@ -33,7 +33,7 @@ public class WebApi : IWebApi
 
     public WebApi GetClient(string clientName)
     {
-        var ex = ExceptionHelper.ThrowStringIsNullOrEmpty(clientName, "HttpClient 配置 ClientName");
+        var ex = ExceptionHelper.ThrowStringIsNullOrEmpty(clientName, EnumException.HttpClientNotHaveClientName);
         if (ex == null)
         {
             if (Config.GetColaSection<List<ClientConfig>>(SystemConstant.CONSTANT_COLAWEBAPI_SECTION)
