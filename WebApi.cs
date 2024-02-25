@@ -268,7 +268,7 @@ public class WebApi : IWebApi
     public void SendEmail(SmtpClientModel smtpClientModel, MailUser fromUser, List<MailUser> toUsers, string subject,
         string body, List<MailUser>? ccUsers, List<MailUser>? bccUsers, List<string>? filePaths)
     {
-        var fromAddress = new MailAddress(fromUser.MailAddress, fromUser.MailUserName);
+        var fromAddress = new MailAddress(fromUser.MailAddress!, fromUser.MailUserName);
 
         var message = new MailMessage()
         {
@@ -283,15 +283,15 @@ public class WebApi : IWebApi
         var ccAddressList = new List<MailAddress>();
         var bccAddressList = new List<MailAddress>();
 
-        foreach (var toUser in toUsers) toAddressList.Add(new MailAddress(toUser.MailAddress, toUser.MailUserName));
+        foreach (var toUser in toUsers) toAddressList.Add(new MailAddress(toUser.MailAddress!, toUser.MailUserName));
 
         if (ccUsers != null)
             foreach (var ccUser in ccUsers)
-                ccAddressList.Add(new MailAddress(ccUser.MailAddress, ccUser.MailUserName));
+                ccAddressList.Add(new MailAddress(ccUser.MailAddress!, ccUser.MailUserName));
 
         if (bccUsers != null)
             foreach (var bccUser in bccUsers)
-                bccAddressList.Add(new MailAddress(bccUser.MailAddress, bccUser.MailUserName));
+                bccAddressList.Add(new MailAddress(bccUser.MailAddress!, bccUser.MailUserName));
 
         // send all toUsers
         foreach (var toAddress in toAddressList) message.To.Add(toAddress);
@@ -316,7 +316,7 @@ public class WebApi : IWebApi
 
         var smtpClient = new SmtpClient
         {
-            Host = smtpClientModel.Host,
+            Host = smtpClientModel.Host!,
             Port = smtpClientModel.Port,
             Credentials =
                 new NetworkCredential(smtpClientModel.CredentialsUserName, smtpClientModel.CredentialsUserPwd),

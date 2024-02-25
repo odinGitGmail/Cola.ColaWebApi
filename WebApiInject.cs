@@ -12,7 +12,7 @@ public static class WebApiInject
     /// <param name="services">IServiceCollection</param>
     /// <param name="configuration">configuration</param>
     /// <returns>IServiceCollection</returns>
-    public static IServiceCollection AddSingletonColaWebApi(this IServiceCollection services,
+    public static IServiceCollection AddColaWebApi(this IServiceCollection services,
         IConfiguration configuration)
     {
         services.AddColaHttpClient(configuration);

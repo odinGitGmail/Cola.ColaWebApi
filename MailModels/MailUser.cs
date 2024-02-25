@@ -2,7 +2,7 @@
 
 public class MailUser
 {
-    public string MailAddress { get; set; }
+    public string? MailAddress { get; set; }
 
-    public string MailUserName { get; set; }
+    public string? MailUserName { get; set; }
 }
