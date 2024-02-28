@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Net.Mail;
 using System.Text;
 using Cola.ColaWebApi.MailModels;
-using Cola.Core.ColaException;
+using Cola.Core.ColaEx;
 using Cola.Core.Models.ColaWebApi;
 using Cola.CoreUtils.Constants;
 using Cola.CoreUtils.Enums;

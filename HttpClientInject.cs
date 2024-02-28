@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using Cola.Core.ColaConsole;
-using Cola.Core.ColaException;
+using Cola.Core.ColaEx;
 using Cola.Core.Models.ColaWebApi;
 using Cola.CoreUtils.Constants;
 using Cola.CoreUtils.Enums;
